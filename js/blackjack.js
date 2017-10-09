@@ -6,20 +6,32 @@ $(document).ready(function(){
   $("#shuffle").click(function(e){
     let deckCount = $('#newGameDeckCount');
     e.preventDefault();
-    console.log('deck count?', deckCount)
-    // buildDeck();
+    buildDeck();
   });
 
 });
+
 buildDeck = function (decks){
   let deckCount = parseInt(decks);
-  console.log('hello from the deck builder :)')
   if (deckCount > 8){
     throw 'Cannot Play with More than 8 Decks'
   }
   for (var i=0; i<deckCount; i++){
     for (var j = 0; j<suits.length; j++){
-      console.log("hello from the deck builder :)")
+      for (var k=0; k<cards.length; k++){
+        var value = 0;
+        value = parseInt(cards[k]);
+        if (cards[k] === 'A'){
+          value = 'A';
+        } else if (cards[k] == 'Q' || cards[k]== 'K' || cards[k] == 'J'){
+          value = 10;
+        }
+        deck.push({
+          suit: suits[j],
+          value: value,
+          face: cards[k]
+        });
+      }
     }
   }
 };
